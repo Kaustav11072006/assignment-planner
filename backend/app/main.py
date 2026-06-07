@@ -44,3 +44,22 @@ async def root():
 # Include routers from the routes directory
 app.include_router(auth.router, prefix="/api/auth", tags=["Authentication"])
 app.include_router(assignments.router, prefix="/api/assignments", tags=["Assignments"])
+
+
+# Add this snippet inside backend/app/main.py to automate the scheduler:
+from apscheduler.schedulers.background import BackgroundScheduler
+from app.services.scheduler import scan_and_trigger_reminders
+from app.database import SessionLocal
+
+scheduler = BackgroundScheduler()
+
+def periodic_check():
+    db = SessionLocal()
+    try:
+        scan_and_trigger_reminders(db)
+    finally:
+        db.close()
+
+# Run the task scanner automatically every 30 minutes
+scheduler.add_job(periodic_check, "interval", minutes=30)
+scheduler.start()
