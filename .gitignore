@@ -47,3 +47,4 @@ out/
 *.ntvs*
 *.njsproj
 *.sln
+backend/.env
