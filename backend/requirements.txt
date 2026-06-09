@@ -1,0 +1,19 @@
+# Web Framework and Server
+fastapi==0.110.0
+uvicorn==0.28.0
+
+# Database and ORM
+sqlalchemy==2.0.28
+psycopg2-binary==2.9.9
+
+# Environment and Data Validation
+pydantic==2.6.4
+pydantic-settings==2.2.1
+
+# Security, Hashing, and JWT Tokens
+passlib[bcrypt]==1.7.4
+python-jose[cryptography]item==3.3.0
+python-multipart==0.0.9
+
+# Background Automation Task Scheduler
+apscheduler==3.10.4
