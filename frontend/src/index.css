@@ -1,0 +1,44 @@
+/* frontend/src/index.css */
+
+/* Inject Tailwind CSS core layers */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Base Layer Styling overrides */
+@layer base {
+  body {
+    @apply bg-gray-50/50 text-gray-900 antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Smooth focus transitions globally for form fields */
+  input, textarea, select {
+    @apply transition-all duration-150 ease-in-out;
+  }
+
+  /* Clean up default styling for datetime-local native picker dropdowns */
+  input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    @apply opacity-60 hover:opacity-100 cursor-pointer transition-opacity;
+    filter: invert(34%) sepia(86%) saturate(1487%) hue-rotate(224%) brightness(92%) contrast(91%); /* Tints the icon towards indigo-600 */
+  }
+}
+
+/* Custom UI Animation Utilities */
+@layer utilities {
+  /* Soft pulse keyframe overrides to make the 'Critical' badge look subtle but urgent */
+  .animate-pulse {
+    animation: soft-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes soft-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: .85;
+    transform: scale(1.02);
+  }
+}
